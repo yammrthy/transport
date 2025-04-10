@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Data Viewer</title>
+    <title>Vehicle Information Cards</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1>Vehicle Information</h1>
 
-    <h1>Excel Data Viewer</h1>
+    <div class="card-container">
+        <div class="card">
+            <h2>Vehicle ID: CR-11</h2>
+            <p><strong>Type of Equipment:</strong> MOBILE CRANES</p>
+            <p><strong>Category of Equipment:</strong> MAINTENANCE & SERVICE EQUIPMENTS</p>
+            <p><strong>Year of Purchase:</strong> 2020</p>
+            <p><strong>Age of Vehicle:</strong> 4 years</p>
+            <p><strong>Vehicle Registration No.:</strong> KA-34 P2279</p>
+            <p><strong>Vehicle Make:</strong> TIL</p>
+            <p><strong>Model:</strong> RT 740B</p>
+            <p><strong>Emission Norm:</strong> BS4</p>
+            <p><strong>Engine No.:</strong> 699836/1</p>
+            <p><strong>Chassis No.:</strong> TLB00740NKXB18335</p>
+        </div>
+        <!-- You can add more cards below by copying the structure above -->
+    </div>
 
-    <!-- Button to Fetch Excel File -->
-    <button id="fetch-btn">Load Excel Data</button>
-
-    <!-- Table to Display Data -->
-    <table id="data-table">
-        <thead><tr></tr></thead>
-        <tbody></tbody>
-    </table>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
