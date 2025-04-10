@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const table = document.getElementById('data-table');
 
-    const excelFileURL = 'https://jsw-my.sharepoint.com/:x:/g/personal/cmd_conference_jsw_in/EU85s2VCAKBFmNOABnW3fCgBWjjqTCBaFJdRNH3gpX4btQ?e=e1Wnsz'; 
+    const excelFileURL = 'https://jsw-my.sharepoint.com/:x:/g/personal/yamuna_m_jsw_in/EdBDMnPaaSlEiShVBfzFErIBHVbm_xAlvMbMoc9_pTCTow?e=4VBkgR'; 
 
     // Fetching Excel file
     fetch(excelFileURL)
