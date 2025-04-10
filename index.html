@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Data Fetch</title>
-  <style>
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 10px; border: 1px solid #ddd; }
-    th { background-color: #f4f4f4; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle History Card</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Live Report</h1>
-  <button onclick="fetchExcelData()">Load Data</button>
-  <table id="report">
-    <thead>
-      <tr>
-        <th>Column 1</th>
-        <th>Column 2</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Dynamic data will appear here -->
-    </tbody>
-  </table>
-  <script src="script.js"></script>
+    <div class="history-card">
+        <h2>Vehicle History Card</h2>
+        <div class="details">
+            <p><strong>Vehicle ID No.:</strong> CR-11</p>
+            <p><strong>Type of Equipment:</strong> Mobile Cranes</p>
+            <p><strong>Category of Equipment:</strong> Maintenance & Service Equipment</p>
+            <p><strong>Year of Purchase:</strong> 2020</p>
+            <p><strong>Age of Vehicle:</strong> 4 years</p>
+            <p><strong>Vehicle Registration No.:</strong> KA-34 P2279</p>
+            <p><strong>Vehicle Make:</strong> TIL</p>
+            <p><strong>Model:</strong> RT 740B</p>
+            <p><strong>Emission Norm:</strong> BS4</p>
+            <p><strong>Engine No.:</strong> 699836/1</p>
+            <p><strong>Chassis No.:</strong> TLB00740NKXB18335</p>
+        </div>
+        <button onclick="openExcel()">Breakdown Details</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
