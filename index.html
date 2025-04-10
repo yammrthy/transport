@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Information Cards</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 </head>
 <body>
     <h1>Vehicle Information</h1>
@@ -14,23 +15,14 @@
         <button id="download-btn">Download as Excel</button>
     </div>
 
+    <!-- Fetch Excel Button -->
+    <div class="fetch-btn-container">
+        <button id="fetch-btn">Fetch and Update from Excel</button>
+    </div>
+
     <!-- Card Container -->
-    <div class="card-container">
-        <div class="card">
-            <h2>Vehicle ID: CR-11</h2>
-            <p><strong>Type of Equipment:</strong> MOBILE CRANES</p>
-            <p><strong>Category of Equipment:</strong> MAINTENANCE & SERVICE EQUIPMENTS</p>
-            <p><strong>Year of Purchase:</strong> 2020</p>
-            <p><strong>Age of Vehicle:</strong> 4 years</p>
-            <p><strong>Vehicle Registration No.:</strong> KA-34 P2279</p>
-            <p><strong>Vehicle Make:</strong> TIL</p>
-            <p><strong>Model:</strong> RT 740B</p>
-            <p><strong>Emission Norm:</strong> BS4</p>
-            <p><strong>Engine No.:</strong> 699836/1</p>
-            <p><strong>Chassis No.:</strong> TLB00740NKXB18335</p>
-            <p><strong>Breakdown History:</strong> No major breakdowns, routine maintenance performed every 6 months.</p>
-        </div>
-        <!-- You can add more cards by copying this structure -->
+    <div class="card-container" id="card-container">
+        <!-- Cards will be dynamically inserted here -->
     </div>
 
     <script src="script.js"></script>
