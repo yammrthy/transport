@@ -3,28 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Information Cards</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <title>Vehicle Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .vehicle-details {
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Vehicle Information</h1>
 
-    <!-- Download Button -->
-    <div class="download-btn-container">
-        <button id="download-btn">Download as Excel</button>
+    <div class="container">
+        <h1>Scan QR Code</h1>
+        <input type="file" id="fileInput" accept=".csv" />
+        <div id="scanner"></div>
+        <div class="vehicle-details" id="vehicleDetails">
+            <h3>Vehicle Details will appear here</h3>
+        </div>
     </div>
 
-    <!-- Fetch Excel Button -->
-    <div class="fetch-btn-container">
-        <button id="fetch-btn">Fetch and Update from Excel</button>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.18.6/umd/index.min.js"></script>
+    <script>
+        // The global vehicle data
+        let vehiclesData = [];
 
-    <!-- Card Container -->
-    <div class="card-container" id="card-container">
-        <!-- Cards will be dynamically inserted here -->
-    </div>
+        // Handle file input to load vehicle data
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const csvData = e.target.result;
+                    vehiclesData = parseCSVToJSON(csvData);
+                    console.log('Loaded vehicle data:', vehiclesData);
+                };
+                reader.readAsText(file);
+            }
+        });
 
-    <script src="script.js"></script>
+        // Parse CSV to JSON
+        function parseCSVToJSON(csv) {
+            const lines = csv.split("\n");
+            const result = [];
+            const headers = lines[0].split(",");
+            for (let i = 1; i < lines.length; i++) {
+                const obj = {};
+                const currentLine = lines[i].split(",");
+                headers.forEach((header, index) => {
+                    obj[header.trim()] = currentLine[index].trim();
+                });
+                result.push(obj);
+            }
+            return result;
+        }
+
+        // Initialize the QR code scanner
+        const codeReader = new ZXing.BrowserQRCodeReader();
+        codeReader.decodeFromInputVideoDevice(undefined, 'scanner').then(result => {
+            console.log(result);
+            const vehicleId = result.text.trim(); // Assuming the QR code contains the vehicle ID
+            const vehicle = vehiclesData.find(v => v.VehicleID === vehicleId); // Find the vehicle details
+            displayVehicleDetails(vehicle);
+        }).catch(err => {
+            console.error(err);
+        });
+
+        // Display vehicle details on the page
+        function displayVehicleDetails(vehicle) {
+            const vehicleDetailsDiv = document.getElementById('vehicleDetails');
+            if (vehicle) {
+                vehicleDetailsDiv.innerHTML = `
+                    <h3>${vehicle.VehicleName}</h3>
+                    <p><strong>ID:</strong> ${vehicle.VehicleID}</p>
+                    <p><strong>Model:</strong> ${vehicle.Model}</p>
+                    <p><strong>Make:</strong> ${vehicle.Make}</p>
+                    <p><strong>Year:</strong> ${vehicle.Year}</p>
+                    <p><strong>Color:</strong> ${vehicle.Color}</p>
+                `;
+            } else {
+                vehicleDetailsDiv.innerHTML = `<h3>No vehicle found!</h3>`;
+            }
+        }
+    </script>
 </body>
 </html>
