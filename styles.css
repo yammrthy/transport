@@ -1,39 +1,64 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 50px;
-}
-
-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-}
-
-th {
     background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
     text-align: center;
+    margin-bottom: 20px;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
+/* Container for the cards */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
-button {
-    padding: 10px 15px;
-    margin: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+/* Styling for each card */
+.card {
+    background-color: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
+/* Card hover effect */
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Heading style for the card */
+.card h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Styling for each card detail */
+.card p {
+    color: #555;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.card p strong {
+    color: #333;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
 }
