@@ -14,7 +14,7 @@ document.getElementById('fetch-btn').addEventListener('click', function() {
             // Convert sheet to JSON
             const jsonData = XLSX.utils.sheet_to_json(sheet);
             
-            console.log(jsonData); // Debug: Check extracted data
+            console.log(jsonData); // Debugging: Verify data extraction
 
             if (jsonData.length === 0) {
                 alert("No data found in the Excel file.");
@@ -54,3 +54,4 @@ document.getElementById('fetch-btn').addEventListener('click', function() {
             alert("Failed to load Excel file. Please check the URL or file format.");
         });
 });
+
