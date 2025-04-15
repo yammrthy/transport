@@ -60,33 +60,32 @@
     </div>
 
     <script>
-        const validVehicleNumbers = ["ABC123", "XYZ456", "LMN789"]; // List of valid vehicle numbers
+        const validVehicleNumbers = ["CR-11","CR-12", "CR-3 90 T"]; 
         
-        // Function to handle the form submission
+   
         document.getElementById("vehicleForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault();
 
-            // Get input values
+         
             const email = document.getElementById("email").value;
             const vehicleNumber = document.getElementById("vehicleNumber").value;
             const errorMessageElement = document.getElementById("errorMessage");
 
-            // Clear previous error message
+           
             errorMessageElement.innerHTML = "";
 
-            // Check if email contains @jsw.in
+           
             if (!email.includes("@jsw.in")) {
                 errorMessageElement.innerHTML = "Invalid email. Please use an email ending with @jsw.in.";
                 return;
             }
 
-            // Check if the vehicle number is in the valid list
+            
             if (!validVehicleNumbers.includes(vehicleNumber)) {
                 errorMessageElement.innerHTML = "Invalid vehicle number. Please enter a valid vehicle number.";
                 return;
             }
 
-            // If both email and vehicle number are valid, redirect to the vehicle details page
             window.location.href = `${vehicleNumber}.html`;
         });
     </script>
