@@ -3,27 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle History Card</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vehicle Info Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="history-card">
-        <h2>Vehicle History Card</h2>
-        <div class="details">
-            <p><strong>Vehicle ID No.:</strong> CR-11</p>
-            <p><strong>Type of Equipment:</strong> Mobile Cranes</p>
-            <p><strong>Category of Equipment:</strong> Maintenance & Service Equipment</p>
-            <p><strong>Year of Purchase:</strong> 2020</p>
-            <p><strong>Age of Vehicle:</strong> 4 years</p>
-            <p><strong>Vehicle Registration No.:</strong> KA-34 P2279</p>
-            <p><strong>Vehicle Make:</strong> TIL</p>
-            <p><strong>Model:</strong> RT 740B</p>
-            <p><strong>Emission Norm:</strong> BS4</p>
-            <p><strong>Engine No.:</strong> 699836/1</p>
-            <p><strong>Chassis No.:</strong> TLB00740NKXB18335</p>
-        </div>
-        <button onclick="openExcel()">Breakdown Details</button>
+
+    <div class="form-container">
+        <h2>Enter Vehicle Details</h2>
+        <form id="vehicleForm">
+            <input type="email" id="email" placeholder="Enter your email" required><br>
+            <input type="text" id="vehicleNumber" placeholder="Enter your vehicle number" required><br>
+            <input type="submit" value="Submit">
+        </form>
+        <div id="errorMessage" class="error-message"></div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        const validVehicleNumbers = ["ABC123", "XYZ456", "LMN789"]; // List of valid vehicle numbers
+        
+        // Function to handle the form submission
+        document.getElementById("vehicleForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get input values
+            const email = document.getElementById("email").value;
+            const vehicleNumber = document.getElementById("vehicleNumber").value;
+            const errorMessageElement = document.getElementById("errorMessage");
+
+            // Clear previous error message
+            errorMessageElement.innerHTML = "";
+
+            // Check if email contains @jsw.in
+            if (!email.includes("@jsw.in")) {
+                errorMessageElement.innerHTML = "Invalid email. Please use an email ending with @jsw.in.";
+                return;
+            }
+
+            // Check if the vehicle number is in the valid list
+            if (!validVehicleNumbers.includes(vehicleNumber)) {
+                errorMessageElement.innerHTML = "Invalid vehicle number. Please enter a valid vehicle number.";
+                return;
+            }
+
+            // If both email and vehicle number are valid, redirect to the vehicle details page
+            window.location.href = `${vehicleNumber}.html`;
+        });
+    </script>
+
 </body>
 </html>
