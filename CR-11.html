@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Details & Excel Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .data-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        .data-card h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .data-card p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #666;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Data Card Section -->
+    <div class="data-card">
+        <h2>Vehicle Information</h2>
+        <p><strong>Vehicle ID No.:</strong> CR-11</p>
+        <p><strong>Type of Equipment:</strong> MOBILE CRANES</p>
+        <p><strong>Category of Equipment:</strong> MAINTENANCE & SERVICE EQUIPMENTS</p>
+        <p><strong>Year of Purchase:</strong> 2020</p>
+        <p><strong>Age of the Vehicle:</strong> 4 years</p>
+        <p><strong>Vehicle Registration No.:</strong> KA-34 P2279</p>
+        <p><strong>Vehicle Make:</strong> TIL</p>
+        <p><strong>Model:</strong> RT740B</p>
+        <p><strong>Emission Norm:</strong> BS4</p>
+        <p><strong>Engine No.:</strong> 699836/1</p>
+        <p><strong>Chassis No.:</strong> TLB00740NKXB18335</p>
+    </div>
+
+    <!-- Table for Excel Data -->
+    <h2>Excel Data</h2>
+    <table id="excel-table">
+        <thead>
+            <tr>
+                <!-- Table headers will be dynamically added here -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be dynamically added here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Include SheetJS Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+
+<script>
+    // URL for the Excel file
+    const excelUrl = "https://jsw-my.sharepoint.com/:x:/g/personal/yamuna_m_jsw_in/EYGMswCV_6xDmFjek6VZJpsB4Oj9LPuif3bvTNN62OuGpA?e=dTTjA0";
+
+    // Fetch the Excel file and display it in the table
+    async function fetchExcelData() {
+        const response = await fetch(excelUrl);
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+
+        // Assuming the first sheet is the one we want to display
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        
+        // Convert sheet to HTML table
+        const htmlString = XLSX.utils.sheet_to_html(sheet);
+        
+        // Insert the generated HTML table into the page
+        document.getElementById('excel-table').innerHTML = htmlString;
+    }
+
+    // Call the fetchExcelData function when the page loads
+    window.onload = function() {
+        fetchExcelData();
+    }
+</script>
+
+</body>
+</html>
