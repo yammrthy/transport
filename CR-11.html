@@ -1,166 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vehicle Information - CR-11</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      width: 80%;
-      margin: 20px auto;
-    }
-
-    .card {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
-    }
-
-    .card h2 {
-      margin-top: 0;
-      font-size: 24px;
-      color: #333;
-    }
-
-    .card .row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .card .row label {
-      font-weight: bold;
-    }
-
-    .card .row span {
-      color: #555;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-
-    th, td {
-      padding: 10px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f1f1f1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Information Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        .card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .card p span {
+            font-weight: bold;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-
-<div class="container">
-  <!-- Vehicle Information Card -->
-  <div class="card">
-    <h2>Vehicle Information: CR-11</h2>
-    <div class="row">
-      <label for="vehicleId">Vehicle ID No.:</label>
-      <span id="vehicleId">CR-11</span>
+    <div class="card">
+        <h2>Vehicle Information</h2>
+        <p><span>Vehicle ID No.:</span> CR-11</p>
+        <p><span>Type of Equipment:</span> MOBILE CRANES</p>
+        <p><span>Category of Equipment:</span> MAINTENANCE & SERVICE EQUIPMENTS</p>
+        <p><span>Year of Purchase:</span> 2020</p>
+        <p><span>Age of the Vehicle:</span> 4 years</p>
+        <p><span>Vehicle Registration No.:</span> KA-34 P2279</p>
+        <p><span>Vehicle Make:</span> TIL</p>
+        <p><span>Model:</span> RT740B</p>
+        <p><span>Emission Norm:</span> BS4</p>
+        <p><span>Engine No.:</span> 699836/1</p>
+        <p><span>Chassis No.:</span> TLB00740NKXB18335</p>
+        <a href="https://jsw-my.sharepoint.com/:x:/g/personal/yamuna_m_jsw_in/ERoFMKfBEzFHpQRWE9IPvKwBg293S1bStSehDndUysqw1Q?e=hY66Fu" target="_blank">
+            <button class="btn">Open Excel File</button>
+        </a>
     </div>
-    <div class="row">
-      <label for="equipmentType">Type of Equipment:</label>
-      <span id="equipmentType">MOBILE CRANES</span>
-    </div>
-    <div class="row">
-      <label for="equipmentCategory">Category of Equipment:</label>
-      <span id="equipmentCategory">MAINTENANCE & SERVICE EQUIPMENTS</span>
-    </div>
-    <div class="row">
-      <label for="yearOfPurchase">Year of Purchase:</label>
-      <span id="yearOfPurchase">2020</span>
-    </div>
-    <div class="row">
-      <label for="vehicleAge">Age of the Vehicle:</label>
-      <span id="vehicleAge">4</span>
-    </div>
-    <div class="row">
-      <label for="vehicleRegNo">Vehicle Registration No.:</label>
-      <span id="vehicleRegNo">KA-34 P2279</span>
-    </div>
-    <div class="row">
-      <label for="vehicleMake">Vehicle Make:</label>
-      <span id="vehicleMake">TIL</span>
-    </div>
-    <div class="row">
-      <label for="vehicleModel">Model:</label>
-      <span id="vehicleModel">RT740B</span>
-    </div>
-    <div class="row">
-      <label for="emissionNorm">Emission Norm:</label>
-      <span id="emissionNorm">BS4</span>
-    </div>
-    <div class="row">
-      <label for="engineNo">Engine No.:</label>
-      <span id="engineNo">699836/1</span>
-    </div>
-    <div class="row">
-      <label for="chassisNo">Chassis No.:</label>
-      <span id="chassisNo">TLB00740NKXB18335</span>
-    </div>
-  </div>
-
-  <!-- Vehicle History Table -->
-  <h2>Vehicle History Details</h2>
-  <table id="historyTable">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Service Type</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Data will be inserted dynamically here -->
-    </tbody>
-  </table>
-</div>
-
-<script>
-  // Assuming you have data in the Excel file you want to display
-  // For now, we'll use mock data as an example for the history table
-  
-  const historyData = [
-    { date: '2021-05-15', serviceType: 'Maintenance', details: 'Routine service performed' },
-    { date: '2022-03-20', serviceType: 'Repair', details: 'Engine overhaul' },
-    { date: '2023-08-10', serviceType: 'Service', details: 'Oil change and brake check' },
-  ];
-
-  // Function to load the history data into the table
-  function loadHistoryData() {
-    const tableBody = document.querySelector('#historyTable tbody');
-    historyData.forEach(record => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${record.date}</td>
-        <td>${record.serviceType}</td>
-        <td>${record.details}</td>
-      `;
-      tableBody.appendChild(row);
-    });
-  }
-
-  // Load data on page load
-  window.onload = loadHistoryData;
-</script>
-
 </body>
 </html>
