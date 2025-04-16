@@ -2,87 +2,167 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Vehicle Info Results</title>
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicle Info Page</title>
   <style>
+    :root {
+      --primary-color: #4CAF50;
+      --hover-color: #45a049;
+      --bg-color: #f0f0f0;
+      --font-color: #333;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      padding: 20px;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    th, td {
-      padding: 12px;
-      border: 1px solid #ddd;
+
+    .form-container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       text-align: left;
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
     }
-    th {
-      background-color: #4CAF50;
+
+    .form-container h2 {
+      text-align: center;
+      color: var(--font-color);
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: bold;
+    }
+
+    input[type="email"],
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    input[type="submit"] {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--primary-color);
       color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: var(--hover-color);
+    }
+
+    .error-message,
+    .success-message {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .error-message {
+      color: red;
+    }
+
+    .success-message {
+      color: green;
+      text-align: center;
+    }
+
+    @media (max-width: 500px) {
+      .form-container {
+        padding: 1.5rem 1rem;
+        border-radius: 8px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      input[type="submit"] {
+        font-size: 1rem;
+        padding: 0.6rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h2>Vehicle Info Result</h2>
-  <div id="output">Loading data...</div>
+  <div class="form-container" role="form">
+    <h2>Enter Details</h2>
+    <form id="vehicleForm" novalidate>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError"/>
+      <span id="emailError" class="error-message" role="alert"></span>
+
+      <label for="vehicleNumber">Vehicle Number:</label>
+      <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="Enter your vehicle number" required aria-describedby="vehicleError"/>
+      <span id="vehicleError" class="error-message" role="alert"></span>
+
+      <input type="submit" value="Submit" />
+    </form>
+    <div id="formFeedback" class="success-message" role="alert"></div>
+  </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const vehicleNumber = params.get("vehicle");
+    const validVehicleNumbers = ["CR-11", "CR-12", "CR-3 90 T"];
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@jsw\.in$/;
+    const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]$/;
 
-    const csvUrl = "https://onedrive.live.com/download?resid=YOUR_FILE_ID_HERE&authkey=YOUR_AUTH_KEY_HERE"; // Replace this
+    document.getElementById("vehicleForm").addEventListener("submit", function (event) {
+      event.preventDefault();
 
-    fetch(csvUrl)
-      .then(response => response.text())
-      .then(csv => {
-        Papa.parse(csv, {
-          header: true,
-          skipEmptyLines: true,
-          complete: function(results) {
-            const data = results.data;
+      const email = document.getElementById("email").value.trim();
+      const vehicleNumber = document.getElementById("vehicleNumber").value.trim();
+      const emailError = document.getElementById("emailError");
+      const vehicleError = document.getElementById("vehicleError");
+      const formFeedback = document.getElementById("formFeedback");
 
-            // Filter by vehicle number (case insensitive)
-            const filtered = data.filter(row =>
-              row["Vehicle Number"]?.toLowerCase().trim() === vehicleNumber.toLowerCase().trim()
-            );
+      emailError.textContent = "";
+      vehicleError.textContent = "";
+      formFeedback.textContent = "";
 
-            if (filtered.length === 0) {
-              document.getElementById("output").innerHTML = `<p>No data found for vehicle: <strong>${vehicleNumber}</strong></p>`;
-              return;
-            }
+      let isValid = true;
 
-            // Optional: sort by date or any other column if needed
-            // filtered.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+      // Email validation
+      if (!emailRegex.test(email)) {
+        emailError.textContent = "Please enter a valid email ending with @jsw.in.";
+        isValid = false;
+      }
 
-            // Generate table
-            let table = "<table><tr>";
-            Object.keys(filtered[0]).forEach(col => {
-              table += `<th>${col}</th>`;
-            });
-            table += "</tr>";
+      // Vehicle number validation
+      if (!vehicleRegex.test(vehicleNumber)) {
+        vehicleError.textContent = "Invalid format. Use CR-11 or CR-3 90 T.";
+        isValid = false;
+      } else if (!validVehicleNumbers.includes(vehicleNumber)) {
+        vehicleError.textContent = "Vehicle number not recognized.";
+        isValid = false;
+      }
 
-            filtered.forEach(row => {
-              table += "<tr>";
-              Object.values(row).forEach(val => {
-                table += `<td>${val}</td>`;
-              });
-              table += "</tr>";
-            });
-
-            table += "</table>";
-            document.getElementById("output").innerHTML = table;
-          }
-        });
-      })
-      .catch(error => {
-        console.error("Error loading CSV:", error);
-        document.getElementById("output").innerText = "Failed to load vehicle data.";
-      });
+      if (isValid) {
+        formFeedback.textContent = "Redirecting to vehicle details...";
+        setTimeout(() => {
+          window.location.href = `https://yammrthy.github.io/transport/${encodeURIComponent(vehicleNumber)}.html`;
+        }, 1500);
+      }
+    });
   </script>
 </body>
 </html>
