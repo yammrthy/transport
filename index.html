@@ -1,125 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Info Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 100%;
-            max-width: 400px;
-        }
-        input[type="email"], input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        input[type="submit"] {
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        .error-message {
-            color: red;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        .success-message {
-            color: green;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicle Info Page</title>
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --hover-color: #45a049;
+      --bg-color: #f0f0f0;
+      --font-color: #333;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      color: var(--font-color);
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: bold;
+    }
+
+    input[type="email"],
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    input[type="submit"] {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: var(--hover-color);
+    }
+
+    .error-message,
+    .success-message {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .error-message {
+      color: red;
+    }
+
+    .success-message {
+      color: green;
+      text-align: center;
+    }
+
+    @media (max-width: 500px) {
+      .form-container {
+        padding: 1.5rem 1rem;
+        border-radius: 8px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      input[type="submit"] {
+        font-size: 1rem;
+        padding: 0.6rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="form-container" role="form">
+    <h2>Enter Vehicle Details</h2>
+    <form id="vehicleForm" novalidate>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError"/>
+      <span id="emailError" class="error-message" role="alert"></span>
 
-    <div class="form-container">
-        <h2>Enter Vehicle Details</h2>
-        <form id="vehicleForm" novalidate>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError">
-            <span id="emailError" class="error-message" role="alert"></span><br>
-            
-            <label for="vehicleNumber">Vehicle Number:</label>
-            <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="Enter your vehicle number" required aria-describedby="vehicleError">
-            <span id="vehicleError" class="error-message" role="alert"></span><br>
-            
-            <input type="submit" value="Submit">
-        </form>
-        <div id="formFeedback" class="success-message" role="alert"></div>
-    </div>
+      <label for="vehicleNumber">Vehicle Number:</label>
+      <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="Enter your vehicle number" required aria-describedby="vehicleError"/>
+      <span id="vehicleError" class="error-message" role="alert"></span>
 
-    <script>
-        const validVehicleNumbers = [
-            "CR-11", "CR-12", "CR-3 90 T"
-        ];
+      <input type="submit" value="Submit" />
+    </form>
+    <div id="formFeedback" class="success-message" role="alert"></div>
+  </div>
 
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@jsw\.in$/;
-        const vehicleRegex = /^(CR-\d{1,2}|\sCR-\d{1,2}\s\d{1,2}\s[A-Z])$/;
+  <script>
+    const validVehicleNumbers = ["CR-11", "CR-12", "CR-3 90 T"];
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@jsw\.in$/;
+    const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]$/;
 
-        document.getElementById("vehicleForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+    document.getElementById("vehicleForm").addEventListener("submit", function (event) {
+      event.preventDefault();
 
-            const email = document.getElementById("email").value;
-            const vehicleNumber = document.getElementById("vehicleNumber").value;
-            const emailError = document.getElementById("emailError");
-            const vehicleError = document.getElementById("vehicleError");
-            const formFeedback = document.getElementById("formFeedback");
+      const email = document.getElementById("email").value.trim();
+      const vehicleNumber = document.getElementById("vehicleNumber").value.trim();
+      const emailError = document.getElementById("emailError");
+      const vehicleError = document.getElementById("vehicleError");
+      const formFeedback = document.getElementById("formFeedback");
 
-            emailError.textContent = "";
-            vehicleError.textContent = "";
-            formFeedback.textContent = "";
+      emailError.textContent = "";
+      vehicleError.textContent = "";
+      formFeedback.textContent = "";
 
-            let isValid = true;
+      let isValid = true;
 
-            // Email validation
-            if (!emailRegex.test(email)) {
-                emailError.textContent = "Please enter a valid email ending with @jsw.in.";
-                isValid = false;
-            }
+      // Email validation
+      if (!emailRegex.test(email)) {
+        emailError.textContent = "Please enter a valid email ending with @jsw.in.";
+        isValid = false;
+      }
 
-            // Vehicle number validation
-            if (!vehicleRegex.test(vehicleNumber)) {
-                vehicleError.textContent = "Please enter a valid vehicle number (e.g., CR-11).";
-                isValid = false;
-            } else if (!validVehicleNumbers.includes(vehicleNumber)) {
-                vehicleError.textContent = "Vehicle number not recognized.";
-                isValid = false;
-            }
+      // Vehicle number validation
+      if (!vehicleRegex.test(vehicleNumber)) {
+        vehicleError.textContent = "Invalid format. Use CR-11 or CR-3 90 T.";
+        isValid = false;
+      } else if (!validVehicleNumbers.includes(vehicleNumber)) {
+        vehicleError.textContent = "Vehicle number not recognized.";
+        isValid = false;
+      }
 
-            // If valid, redirect
-            if (isValid) {
-                formFeedback.textContent = "Redirecting to vehicle details...";
-                setTimeout(() => {
-                    window.location.href = `https://yammrthy.github.io/transport/${vehicleNumber}.html`;
-                }, 2000);
-            }
-        });
-    </script>
-
+      if (isValid) {
+        formFeedback.textContent = "Redirecting to vehicle details...";
+        setTimeout(() => {
+          window.location.href = `https://yammrthy.github.io/transport/${encodeURIComponent(vehicleNumber)}.html`;
+        }, 1500);
+      }
+    });
+  </script>
 </body>
 </html>
