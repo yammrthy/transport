@@ -3,46 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vehicle Info Page</title>
+  <title>Vehicle Info - Industrial Project</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: rgb(65, 113, 156);
-      --hover-color: rgb(55, 98, 141);
+      --primary-color: #2d3e50; /* Dark industrial blue */
+      --secondary-color: #8a8a8a; /* Gray for text */
+      --hover-color: #1f2b3a; /* Slightly darker blue */
       --bg-color: rgba(255, 255, 255, 0.3); /* Transparent background for glass effect */
-      --font-color: #FFFFFF;
-      --error-color: #e74c3c;
-      --success-color: #2ecc71;
-      --border-color: #ccc;
-      --focus-color: #2A7D62;
+      --font-color: #F5F5F5; /* Light font color */
+      --error-color: #d9534f; /* Red for error */
+      --success-color: #5bc0de; /* Light blue for success */
+      --border-color: #ccc; /* Light border */
+      --focus-color: #28a745; /* Green focus */
     }
 
-    /* Page background with logo */
     body {
       font-family: 'Roboto', sans-serif;
       background-image: url('logo.png'); /* Logo image as background */
-      background-size: cover; /* Cover the entire page */
-      background-position: center; /* Center the image */
-      background-repeat: no-repeat; /* Prevent repeat of the image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      color: white;
+      color: var(--font-color);
+      background-color: #1e2d3b; /* Slightly darker background for contrast */
     }
 
-    /* Glass effect on form container */
     .form-container {
-      background-color: rgba(255, 255, 255, 0.2); /* Slight white background */
+      background-color: rgba(0, 0, 0, 0.3); /* Dark glass effect */
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       width: 100%;
       max-width: 420px;
-      backdrop-filter: blur(8px); /* Glass effect */
-      -webkit-backdrop-filter: blur(8px); /* For Safari */
+      backdrop-filter: blur(12px); /* Stronger glass effect */
+      -webkit-backdrop-filter: blur(12px);
       box-sizing: border-box;
     }
 
@@ -50,13 +50,16 @@
       text-align: center;
       color: var(--font-color);
       font-weight: 500;
+      font-size: 2rem;
       margin-bottom: 1.5rem;
     }
 
     label {
       display: block;
       margin: 1rem 0 0.5rem;
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--secondary-color);
     }
 
     input[type="email"],
@@ -64,11 +67,11 @@
       width: 100%;
       padding: 1rem;
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 10px;
       box-sizing: border-box;
       font-size: 1rem;
       transition: all 0.3s ease;
-      margin-bottom: 1rem; /* Adds space between the two inputs */
+      margin-bottom: 1rem;
     }
 
     input[type="email"]:focus,
@@ -84,10 +87,11 @@
       background-color: var(--primary-color);
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+      border-radius: 10px;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      font-weight: 600;
     }
 
     input[type="submit"]:hover {
@@ -96,8 +100,9 @@
 
     .error-message,
     .success-message {
-      font-size: 0.9rem;
+      font-size: 1rem;
       margin-top: 0.5rem;
+      font-weight: 600;
     }
 
     .error-message {
@@ -112,15 +117,15 @@
     @media (max-width: 500px) {
       .form-container {
         padding: 1.5rem 1rem;
-        border-radius: 10px;
+        border-radius: 12px;
       }
 
       h2 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
       }
 
       input[type="submit"] {
-        font-size: 1rem;
+        font-size: 1.1rem;
         padding: 0.8rem;
       }
     }
@@ -130,11 +135,11 @@
   <div class="form-container" role="form">
     <h2>Enter Vehicle Details</h2>
     <form id="vehicleForm" novalidate>
-     
+      <label for="email">Email Address</label>
       <input type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError"/>
       <span id="emailError" class="error-message" role="alert"></span>
 
-     
+      <label for="vehicleNumber">Vehicle Number</label>
       <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="Enter your vehicle number" required aria-describedby="vehicleError"/>
       <span id="vehicleError" class="error-message" role="alert"></span>
 
