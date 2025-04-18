@@ -49,12 +49,6 @@
       max-width: 400px;
       width: 100%;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-      animation: fadeIn 0.8s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .form-container h2 {
@@ -168,7 +162,7 @@
 
       const email = document.getElementById("email").value.trim();
       const vehicleInput = document.getElementById("vehicleNumber").value.trim();
-      const vehicleNumber = vehicleInput.toUpperCase(); // Convert to uppercase for case-insensitive match
+      const vehicleNumber = vehicleInput.toUpperCase(); // Case-insensitive match
       const emailError = document.getElementById("emailError");
       const vehicleError = document.getElementById("vehicleError");
       const formFeedback = document.getElementById("formFeedback");
@@ -181,13 +175,14 @@
 
       let isValid = true;
 
+      // Email check
       if (!emailRegex.test(email)) {
         emailError.textContent = "Invalid user";
         isValid = false;
       }
 
+      // Vehicle number format & validity
       const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]{1}$/i;
-
       if (!vehicleRegex.test(vehicleNumber)) {
         vehicleError.textContent = "Format should be CR-11 or CR-3 90 T.";
         isValid = false;
@@ -196,6 +191,7 @@
         isValid = false;
       }
 
+      // Redirect if valid
       if (isValid) {
         formFeedback.textContent = "Redirecting to vehicle details...";
         submitButton.disabled = true;
