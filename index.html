@@ -7,71 +7,79 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #2d3e50; /* Dark industrial blue */
-      --secondary-color: #8a8a8a; /* Gray for text */
-      --hover-color: #1f2b3a; /* Slightly darker blue */
-      --bg-color: rgba(255, 255, 255, 0.3); /* Transparent background for glass effect */
-      --font-color: #F5F5F5; /* Light font color */
-      --error-color: #d9534f; /* Red for error */
-      --success-color: #5bc0de; /* Light blue for success */
-      --border-color: #ccc; /* Light border */
-      --focus-color: #28a745; /* Green focus */
+      --primary-color: #2d3e50;
+      --hover-color: #1f2b3a;
+      --font-dark: #2d3e50;
+      --font-light: #ffffff;
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --border-color: #ddd;
+      --error-color: #d9534f;
+      --success-color: #28a745;
+      --focus-color: #5bc0de;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
       font-family: 'Roboto', sans-serif;
-      background-image: url('logo.png'); /* Logo image as background */
+      background: linear-gradient(to right, #1e2d3b, #1f2b3a);
+      background-image: url('logo.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      margin: 0;
-      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      color: var(--font-color);
-      background-color: #1e2d3b; /* Slightly darker background for contrast */
+      padding: 1rem;
+      color: var(--font-dark);
     }
 
     .form-container {
-      background-color: rgba(0, 0, 0, 0.3); /* Dark glass effect */
+      background: var(--glass-bg);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 20px;
       padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
       width: 100%;
-      max-width: 420px;
-      backdrop-filter: blur(12px); /* Stronger glass effect */
-      -webkit-backdrop-filter: blur(12px);
-      box-sizing: border-box;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .form-container h2 {
       text-align: center;
-      color: var(--font-color);
-      font-weight: 500;
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-bottom: 1.5rem;
+      color: var(--font-dark);
     }
 
     label {
+      font-weight: 500;
+      margin-top: 1rem;
       display: block;
-      margin: 1rem 0 0.5rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: var(--secondary-color);
+      color: #333;
     }
 
     input[type="email"],
     input[type="text"] {
       width: 100%;
-      padding: 1rem;
-      border: 1px solid var(--border-color);
+      padding: 0.9rem;
       border-radius: 10px;
-      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      margin-top: 0.5rem;
       font-size: 1rem;
-      transition: all 0.3s ease;
-      margin-bottom: 1rem;
+      transition: border 0.3s ease;
     }
 
     input[type="email"]:focus,
@@ -81,28 +89,33 @@
     }
 
     input[type="submit"] {
-      margin-top: 1.5rem;
       width: 100%;
-      padding: 1rem;
+      padding: 0.9rem;
       background-color: var(--primary-color);
       color: white;
       border: none;
       border-radius: 10px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 1.5rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      font-weight: 600;
     }
 
     input[type="submit"]:hover {
       background-color: var(--hover-color);
     }
 
+    input[type="submit"]:disabled {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+
     .error-message,
     .success-message {
-      font-size: 1rem;
-      margin-top: 0.5rem;
+      font-size: 0.95rem;
       font-weight: 600;
+      margin-top: 0.5rem;
     }
 
     .error-message {
@@ -114,19 +127,17 @@
       text-align: center;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
       .form-container {
         padding: 1.5rem 1rem;
-        border-radius: 12px;
       }
 
-      h2 {
-        font-size: 1.8rem;
+      .form-container h2 {
+        font-size: 1.6rem;
       }
 
       input[type="submit"] {
-        font-size: 1.1rem;
-        padding: 0.8rem;
+        font-size: 1rem;
       }
     }
   </style>
@@ -136,22 +147,22 @@
     <h2>Enter Vehicle Details</h2>
     <form id="vehicleForm" novalidate>
       <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError"/>
+      <input type="email" id="email" name="email" placeholder="yourname@jsw.in" required autocomplete="email" aria-describedby="emailError"/>
       <span id="emailError" class="error-message" role="alert"></span>
 
       <label for="vehicleNumber">Vehicle Number</label>
-      <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="Enter your vehicle number" required aria-describedby="vehicleError"/>
+      <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="e.g. CR-11 or CR-3 90 T" required aria-describedby="vehicleError"/>
       <span id="vehicleError" class="error-message" role="alert"></span>
 
       <input type="submit" value="Submit" />
     </form>
-    <div id="formFeedback" class="success-message" role="alert"></div>
+    <div id="formFeedback" class="success-message" role="alert" aria-live="polite"></div>
   </div>
 
   <script>
     const validVehicleNumbers = ["CR-11", "CR-12", "CR-3 90 T"];
     const emailRegex = /^[a-zA-Z0-9._%+-]+@jsw\.in$/;
-    const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]$/;
+    const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]{1}$/i;
 
     document.getElementById("vehicleForm").addEventListener("submit", function (event) {
       event.preventDefault();
@@ -161,22 +172,22 @@
       const emailError = document.getElementById("emailError");
       const vehicleError = document.getElementById("vehicleError");
       const formFeedback = document.getElementById("formFeedback");
+      const submitButton = event.target.querySelector('input[type="submit"]');
 
       emailError.textContent = "";
       vehicleError.textContent = "";
       formFeedback.textContent = "";
+      submitButton.disabled = false;
 
       let isValid = true;
 
-      // Email validation
       if (!emailRegex.test(email)) {
-        emailError.textContent = "Please enter a valid email ending with @jsw.in.";
+        emailError.textContent = "Please use a valid @jsw.in email.";
         isValid = false;
       }
 
-      // Vehicle number validation
       if (!vehicleRegex.test(vehicleNumber)) {
-        vehicleError.textContent = "Invalid format. Use CR-11 or CR-3 90 T.";
+        vehicleError.textContent = "Format should be CR-11 or CR-3 90 T.";
         isValid = false;
       } else if (!validVehicleNumbers.includes(vehicleNumber)) {
         vehicleError.textContent = "Vehicle number not recognized.";
@@ -185,6 +196,7 @@
 
       if (isValid) {
         formFeedback.textContent = "Redirecting to vehicle details...";
+        submitButton.disabled = true;
         setTimeout(() => {
           window.location.href = `https://yammrthy.github.io/transport/${encodeURIComponent(vehicleNumber)}.html`;
         }, 1500);
