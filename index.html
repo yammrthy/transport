@@ -162,13 +162,13 @@
   <script>
     const validVehicleNumbers = ["CR-11", "CR-12", "CR-3 90 T"];
     const emailRegex = /^[a-zA-Z0-9._%+-]+@jsw\.in$/;
-    const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]{1}$/i;
 
     document.getElementById("vehicleForm").addEventListener("submit", function (event) {
       event.preventDefault();
 
       const email = document.getElementById("email").value.trim();
-      const vehicleNumber = document.getElementById("vehicleNumber").value.trim();
+      const vehicleInput = document.getElementById("vehicleNumber").value.trim();
+      const vehicleNumber = vehicleInput.toUpperCase(); // Convert to uppercase for case-insensitive match
       const emailError = document.getElementById("emailError");
       const vehicleError = document.getElementById("vehicleError");
       const formFeedback = document.getElementById("formFeedback");
@@ -182,9 +182,11 @@
       let isValid = true;
 
       if (!emailRegex.test(email)) {
-        emailError.textContent = "Please use a valid @jsw.in email.";
+        emailError.textContent = "Invalid user";
         isValid = false;
       }
+
+      const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]{1}$/i;
 
       if (!vehicleRegex.test(vehicleNumber)) {
         vehicleError.textContent = "Format should be CR-11 or CR-3 90 T.";
