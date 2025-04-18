@@ -17,13 +17,13 @@
       --focus-color: #2A7D62;
     }
 
-    /* Background image */
+    /* Page background with logo */
     body {
       font-family: 'Roboto', sans-serif;
-      background-image: url('bg.png'); /* Your background image */
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+      background-image: url('logo.png'); /* Logo image as background */
+      background-size: cover; /* Cover the entire page */
+      background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Prevent repeat of the image */
       margin: 0;
       padding: 0;
       display: flex;
@@ -44,18 +44,6 @@
       backdrop-filter: blur(8px); /* Glass effect */
       -webkit-backdrop-filter: blur(8px); /* For Safari */
       box-sizing: border-box;
-    }
-
-    /* Header and logo styles */
-    header {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    header img {
-      width: 150px; /* Adjust the size of the logo */
-      height: auto;
     }
 
     .form-container h2 {
@@ -134,20 +122,11 @@
         font-size: 1rem;
         padding: 0.8rem;
       }
-      
-      header img {
-        width: 120px; /* Make the logo slightly smaller on small screens */
-      }
     }
   </style>
 </head>
 <body>
   <div class="form-container" role="form">
-    <!-- Header with logo -->
-    <header>
-      <img src="logo.png" alt="Company Logo" />
-    </header>
-
     <h2>Enter Vehicle Details</h2>
     <form id="vehicleForm" novalidate>
       <label for="email">Email:</label>
