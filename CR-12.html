@@ -1,75 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Information Card</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 350px;
-            padding: 20px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-        }
-        .card h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .card p {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-        .card p span {
-            font-weight: bold;
-        }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 5px;
-            margin-top: 20px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CR-12 Vehicle Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #d35400; /* Rust orange */
+      --secondary-color: #b0b0b0; /* Muted gray */
+      --hover-color: #a04000; /* Dark rust */
+      --bg-color: rgba(42, 46, 53, 0.3); /* Glass over steel gray */
+      --font-color: #f0f0f0; /* Light text */
+      --error-color: #e74c3c;
+      --success-color: #f39c12;
+      --border-color: #666;
+      --focus-color: #f39c12;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: rgba(103, 129, 177);
+      color: var(--font-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 1rem; /* Added padding for small devices */
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.3); /* Glass effect */
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 420px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-sizing: border-box;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      font-size: 2rem;
+      color: var(--font-color);
+    }
+
+    .card p {
+      font-size: 1rem;
+      margin: 0.6rem 0;
+      color: var(--secondary-color);
+    }
+
+    .card p span {
+      display: inline-block;
+      min-width: 170px;
+      color: var(--font-color);
+      font-weight: 500;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--hover-color);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Improved Mobile Responsiveness */
+    @media (max-width: 600px) {
+      body {
+        padding: 0.5rem; /* Reduce padding on smaller screens */
+      }
+
+      .card {
+        padding: 1.5rem 1rem; /* Adjust padding for smaller screens */
+        border-radius: 12px;
+      }
+
+      .card h2 {
+        font-size: 1.8rem; /* Reduce the font size */
+      }
+
+      .btn {
+        font-size: 1.1rem;
+        padding: 0.8rem; /* Adjust button size */
+      }
+
+      .card p {
+        font-size: 0.9rem; /* Slightly smaller text on mobile */
+      }
+
+      .card p span {
+        min-width: 140px; /* Reduce the width of labels for better wrapping */
+      }
+    }
+
+    /* For very small screens like phones in portrait mode */
+    @media (max-width: 400px) {
+      .card h2 {
+        font-size: 1.6rem; /* Smaller font size for small devices */
+      }
+
+      .btn {
+        font-size: 1rem;
+        padding: 0.7rem; /* Smaller button for smaller screens */
+      }
+
+      .card p {
+        font-size: 0.85rem; /* Even smaller text for very small screens */
+      }
+
+      .card p span {
+        min-width: 120px; /* Further reduce the width for text labels */
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Vehicle Information</h2>
-        <p><span>Vehicle ID No.:</span> CR-12</p>
-        <p><span>Type of Equipment:</span> MOBILE CRANES</p>
-        <p><span>Category of Equipment:</span> MAINTENANCE & SERVICE EQUIPMENTS</p>
-        <p><span>Year of Purchase:</span> 2021</p>
-        <p><span>Age of the Vehicle:</span> 3 years</p>
-        <p><span>Vehicle Registration No.:</span> KA35BP 3592</p>
-        <p><span>Vehicle Make:</span> MANITOWOC</p>
-        <p><span>Model:</span> GMK6300L</p>
-        <p><span>Emission Norm:</span> BS6</p>
-        <p><span>Engine No.:</span> 63003262/1</p>
-        <p><span>Chassis No.:</span> W09300630LWG12262</p>
-        <a href="https://jsw-my.sharepoint.com/:x:/g/personal/yamuna_m_jsw_in/ET4ZsU79rflNj4azXWGPuXIBN33pCxZUT5R2F31cE6UWHA?e=Y6sPND">
-            <button class="btn">Open Excel File</button>
-        </a>
-    </div>
+  <div class="card">
+    <h2>Vehicle Information</h2>
+    <p><span>Vehicle ID No.:</span> CR-12</p>
+    <p><span>Type of Equipment:</span> MOBILE CRANES</p>
+    <p><span>Category:</span> MAINTENANCE & SERVICE</p>
+    <p><span>Year of Purchase:</span> 2021</p>
+    <p><span>Age:</span> 3 years</p>
+    <p><span>Registration No.:</span> KA35BP 3592</p>
+    <p><span>Make:</span> MANITOWOC</p>
+    <p><span>Model:</span> CMK6300L</p>
+    <p><span>Emission Norm:</span> BS6</p>
+    <p><span>Engine No.:</span> 63003262/1</p>
+    <p><span>Chassis No.:</span>W09300630LWG12262</p>
+    <a href="https://jsw-my.sharepoint.com/:x:/g/personal/yamuna_m_jsw_in/ERoFMKfBEzFHpQRWE9IPvKwBg293S1bStSehDndUysqw1Q?e=hY66Fu" target="_blank">
+      <button class="btn">Open Excel File</button>
+    </a>
+  </div>
 </body>
 </html>
