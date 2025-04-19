@@ -1,97 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Information Card</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicle Information Card</title>
+  <style>
+    :root {
+  --bg-dark: #1b1b1b;          /* Dark industrial background */
+  --card-bg: #2a2e35;          /* Steel gray card */
+  --primary-text: #f0f0f0;     /* Light text */
+  --secondary-text: #b0b0b0;   /* Muted text */
+  --accent-color: #f39c12;     /* Yellow/orange accent */
+  --btn-bg: #d35400;           /* Rust orange */
+  --btn-hover: #a04000;        /* Darker rust */
+}
 
-        .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 350px;
-            padding: 20px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-        }
 
-        .card h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--primary-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: linear-gradient(135deg, #1a1f25 0%, #232c33 100%);
+    }
 
-        .card p {
-            font-size: 16px;
-            margin: 10px 0;
-        }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 380px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease;
+    }
 
-        .card p span {
-            font-weight: bold;
-        }
+    .card:hover {
+      transform: scale(1.02);
+    }
 
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 5px;
-            margin-top: 20px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    .card h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      letter-spacing: 1px;
+    }
 
-        .btn:hover {
-            background-color: #45a049;
-        }
+    .card p {
+      font-size: 0.95rem;
+      margin: 0.5rem 0;
+      color: var(--secondary-text);
+    }
 
-        /* Responsive adjustments */
-        @media (max-width: 400px) {
-            .card {
-                width: 90%;
-                padding: 15px;
-            }
+    .card p span {
+      display: inline-block;
+      min-width: 170px;
+      color: var(--primary-text);
+      font-weight: 500;
+    }
 
-            .card p {
-                font-size: 14px;
-            }
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 2rem;
+      padding: 0.75rem;
+      background-color: var(--btn-bg);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-            .btn {
-                font-size: 14px;
-            }
-        }
-    </style>
+    .btn:hover {
+      background-color: var(--btn-hover);
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Vehicle Information</h2>
-        <p><span>Vehicle ID No.:</span> CR-11</p>
-        <p><span>Type of Equipment:</span> MOBILE CRANES</p>
-        <p><span>Category of Equipment:</span> MAINTENANCE & SERVICE EQUIPMENTS</p>
-        <p><span>Year of Purchase:</span> 2020</p>
-        <p><span>Age of the Vehicle:</span> 4 years</p>
-        <p><span>Vehicle Registration No.:</span> KA-34 P2279</p>
-        <p><span>Vehicle Make:</span> TIL</p>
-        <p><span>Model:</span> RT740B</p>
-        <p><span>Emission Norm:</span> BS4</p>
-        <p><span>Engine No.:</span> 699836/1</p>
-        <p><span>Chassis No.:</span> TLB00740NKXB18335</p>
-        <a href="https://jsw-my.sharepoint.com/:x:/g/personal/yamuna_m_jsw_in/ERoFMKfBEzFHpQRWE9IPvKwBg293S1bStSehDndUysqw1Q?e=hY66Fu" target="_blank">
-            <button class="btn">Open Excel File</button>
-        </a>
-    </div>
+  <div class="card">
+    <h2>Vehicle Information</h2>
+    <p><span>Vehicle ID No.:</span> CR-11</p>
+    <p><span>Type of Equipment:</span> MOBILE CRANES</p>
+    <p><span>Category:</span> MAINTENANCE & SERVICE</p>
+    <p><span>Year of Purchase:</span> 2020</p>
+    <p><span>Age:</span> 4 years</p>
+    <p><span>Registration No.:</span> KA-34 P2279</p>
+    <p><span>Make:</span> TIL</p>
+    <p><span>Model:</span> RT740B</p>
+    <p><span>Emission Norm:</span> BS4</p>
+    <p><span>Engine No.:</span> 699836/1</p>
+    <p><span>Chassis No.:</span> TLB00740NKXB18335</p>
+    <a href="https://jsw-my.sharepoint.com/:x:/g/personal/yamuna_m_jsw_in/ERoFMKfBEzFHpQRWE9IPvKwBg293S1bStSehDndUysqw1Q?e=hY66Fu" target="_blank">
+      <button class="btn">Open Excel File</button>
+    </a>
+  </div>
 </body>
 </html>
