@@ -174,13 +174,13 @@ body {
 
       // Email validation
       if (!emailRegex.test(email)) {
-        emailError.textContent = "Please enter a valid email ending with @jsw.in.";
+        emailError.textContent = "Invalid User!";
         isValid = false;
       }
 
       // Vehicle number validation
       if (!vehicleRegex.test(vehicleNumber)) {
-        vehicleError.textContent = "Invalid format. Use CR-11 or CR-3 90 T.";
+        vehicleError.textContent = "Vehicle number not recognized";
         isValid = false;
       } else if (!validVehicleNumbers.includes(vehicleNumber)) {
         vehicleError.textContent = "Vehicle number not recognized.";
