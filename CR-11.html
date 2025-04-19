@@ -16,10 +16,7 @@
   --border-color: #666; /* Mid gray border */
   --focus-color: #f39c12; /* Highlight input with yellow */
 }
-body {
-  background-color: #fff;
-  background-image: none; /* optional: remove logo image if needed */
-}
+
 
     body {
       margin: 0;
@@ -34,12 +31,17 @@ body {
     }
 
     .card {
-      background-color: var(--card-bg);
-      border-radius: 16px;
+    
+      background-color: rgba(0, 0, 0, 0.3); /* Dark glass effect */
       padding: 2rem;
-      width: 380px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 420px;
+      backdrop-filter: blur(12px); /* Stronger glass effect */
+      -webkit-backdrop-filter: blur(12px);
+      box-sizing: border-box;
+    
     }
 
     .card:hover {
