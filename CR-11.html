@@ -4,44 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vehicle Information Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-       :root {
-  --primary-color: #d35400; /* Rust orange */
-  --secondary-color: #b0b0b0; /* Muted gray */
-  --hover-color: #a04000; /* Dark rust */
-  --bg-color: rgba(42, 46, 53, 0.3); /* Glass over steel gray */
-  --font-color: #f0f0f0; /* Light text */
-  --error-color: #e74c3c; /* Red for errors */
-  --success-color: #f39c12; /* Industrial yellow for success */
-  --border-color: #666; /* Mid gray border */
-  --focus-color: #f39c12; /* Highlight input with yellow */
-}
-
+    :root {
+      --primary-color: #d35400; /* Rust orange */
+      --secondary-color: #b0b0b0; /* Muted gray */
+      --hover-color: #a04000; /* Dark rust */
+      --bg-color: rgba(42, 46, 53, 0.3); /* Glass over steel gray */
+      --font-color: #f0f0f0; /* Light text */
+      --error-color: #e74c3c;
+      --success-color: #f39c12;
+      --border-color: #666;
+      --focus-color: #f39c12;
+    }
 
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--primary-text);
+      background: linear-gradient(135deg, #1a1f25 0%, #232c33 100%);
+      color: var(--font-color);
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background-image: linear-gradient(135deg, #1a1f25 0%, #232c33 100%);
     }
 
     .card {
-    
-      background-color: rgba(0, 0, 0, 0.3); /* Dark glass effect */
+      background-color: rgba(0, 0, 0, 0.3); /* Glass effect */
       padding: 2rem;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       width: 100%;
       max-width: 420px;
-      backdrop-filter: blur(12px); /* Stronger glass effect */
+      backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-sizing: border-box;
-    
+      transition: transform 0.3s ease;
     }
 
     .card:hover {
@@ -51,21 +49,21 @@
     .card h2 {
       text-align: center;
       margin-bottom: 1.5rem;
-      font-weight: 600;
-      color: var(--accent-color);
-      letter-spacing: 1px;
+      font-weight: 500;
+      font-size: 2rem;
+      color: var(--font-color);
     }
 
     .card p {
-      font-size: 0.95rem;
-      margin: 0.5rem 0;
-      color: var(--secondary-text);
+      font-size: 1rem;
+      margin: 0.6rem 0;
+      color: var(--secondary-color);
     }
 
     .card p span {
       display: inline-block;
       min-width: 170px;
-      color: var(--primary-text);
+      color: var(--font-color);
       font-weight: 500;
     }
 
@@ -73,23 +71,43 @@
       display: block;
       width: 100%;
       margin-top: 2rem;
-      padding: 0.75rem;
-      background-color: var(--btn-bg);
+      padding: 1rem;
+      background-color: var(--primary-color);
       color: white;
-      font-weight: bold;
+      font-weight: 600;
       border: none;
       border-radius: 10px;
-      font-size: 1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
 
     .btn:hover {
-      background-color: var(--btn-hover);
+      background-color: var(--hover-color);
     }
 
     a {
       text-decoration: none;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 1.5rem 1rem;
+        border-radius: 12px;
+      }
+
+      .card h2 {
+        font-size: 1.8rem;
+      }
+
+      .btn {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+      }
+
+      .card p span {
+        min-width: 140px;
+      }
     }
   </style>
 </head>
