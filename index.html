@@ -7,24 +7,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-  --primary-color: #d35400; /* Rust orange */
-  --secondary-color: #b0b0b0; /* Muted gray */
-  --hover-color: #a04000; /* Dark rust */
-  --bg-color: rgba(42, 46, 53, 0.3); /* Glass over steel gray */
-  --font-color: #f0f0f0; /* Light text */
-  --error-color: #e74c3c; /* Red for errors */
-  --success-color: #f39c12; /* Industrial yellow for success */
-  --border-color: #666; /* Mid gray border */
-  --focus-color: #f39c12; /* Highlight input with yellow */
-}
-body {
-  background-color: #1b1b1b;
-  background-image: none; /* optional: remove logo image if needed */
-}
+      --primary-color: #d35400;
+      --secondary-color: #b0b0b0;
+      --hover-color: #a04000;
+      --bg-color: rgba(42, 46, 53, 0.3);
+      --font-color: #f0f0f0;
+      --error-color: #e74c3c;
+      --success-color: #f39c12;
+      --border-color: #666;
+      --focus-color: #f39c12;
+    }
 
     body {
       font-family: 'Roboto', sans-serif;
-      background-image: url('logo.png'); /* Logo image as background */
+      background-image: url('logo.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -35,17 +31,17 @@ body {
       align-items: center;
       min-height: 100vh;
       color: var(--font-color);
-      background-color: #1e2d3b; /* Slightly darker background for contrast */
+      background-color: #1e2d3b;
     }
 
     .form-container {
-      background-color: rgba(0, 0, 0, 0.3); /* Dark glass effect */
+      background-color: rgba(0, 0, 0, 0.3);
       padding: 2rem;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       width: 100%;
       max-width: 420px;
-      backdrop-filter: blur(12px); /* Stronger glass effect */
+      backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-sizing: border-box;
     }
@@ -140,11 +136,11 @@ body {
     <h2>Enter Vehicle Details</h2>
     <form id="vehicleForm" novalidate>
       <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError"/>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError" autocomplete="off"/>
       <span id="emailError" class="error-message" role="alert"></span>
 
       <label for="vehicleNumber">Vehicle Number</label>
-      <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="Enter your vehicle number" required aria-describedby="vehicleError"/>
+      <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="Enter your vehicle number" required aria-describedby="vehicleError" autocomplete="off"/>
       <span id="vehicleError" class="error-message" role="alert"></span>
 
       <input type="submit" value="Submit" />
@@ -173,14 +169,20 @@ body {
       let isValid = true;
 
       // Email validation
-      if (!emailRegex.test(email)) {
-        emailError.textContent = "Invalid User!";
+      if (email === "") {
+        emailError.textContent = "Email is required.";
+        isValid = false;
+      } else if (!emailRegex.test(email)) {
+        emailError.textContent = "Invalid email (must be @jsw.in).";
         isValid = false;
       }
 
       // Vehicle number validation
-      if (!vehicleRegex.test(vehicleNumber)) {
-        vehicleError.textContent = "Vehicle number not recognized";
+      if (vehicleNumber === "") {
+        vehicleError.textContent = "Vehicle number is required.";
+        isValid = false;
+      } else if (!vehicleRegex.test(vehicleNumber)) {
+        vehicleError.textContent = "Enter a valid format (e.g., CR-11 or CR-3 90 T).";
         isValid = false;
       } else if (!validVehicleNumbers.includes(vehicleNumber)) {
         vehicleError.textContent = "Vehicle number not recognized.";
