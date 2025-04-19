@@ -196,7 +196,7 @@
         emailError.textContent = "Email is required.";
         isValid = false;
       } else if (!emailRegex.test(email)) {
-        emailError.textContent = "Invalid email (must be @jsw.in).";
+        emailError.textContent = "Invalid Email";
         isValid = false;
       }
 
@@ -205,7 +205,7 @@
         vehicleError.textContent = "Vehicle number is required.";
         isValid = false;
       } else if (!vehicleRegex.test(vehicleNumber)) {
-        vehicleError.textContent = "Enter a valid format (e.g., CR-11 or CR-3 90 T).";
+        vehicleError.textContent = "Invalid Vehicle Number";
         isValid = false;
       } else if (!validVehicleNumbers.includes(vehicleNumber)) {
         vehicleError.textContent = "Vehicle number not recognized.";
