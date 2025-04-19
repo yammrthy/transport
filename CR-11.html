@@ -20,13 +20,14 @@
 
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif; 
-      background: rgba(103,129,177);
+      font-family: 'Roboto', sans-serif;
+      background: rgba(103, 129, 177);
       color: var(--font-color);
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      padding: 1rem; /* Added padding for small devices */
     }
 
     .card {
@@ -90,23 +91,52 @@
       text-decoration: none;
     }
 
-    @media (max-width: 500px) {
+    /* Improved Mobile Responsiveness */
+    @media (max-width: 600px) {
+      body {
+        padding: 0.5rem; /* Reduce padding on smaller screens */
+      }
+
       .card {
-        padding: 1.5rem 1rem;
+        padding: 1.5rem 1rem; /* Adjust padding for smaller screens */
         border-radius: 12px;
       }
 
       .card h2 {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Reduce the font size */
       }
 
       .btn {
         font-size: 1.1rem;
-        padding: 0.8rem;
+        padding: 0.8rem; /* Adjust button size */
+      }
+
+      .card p {
+        font-size: 0.9rem; /* Slightly smaller text on mobile */
       }
 
       .card p span {
-        min-width: 140px;
+        min-width: 140px; /* Reduce the width of labels for better wrapping */
+      }
+    }
+
+    /* For very small screens like phones in portrait mode */
+    @media (max-width: 400px) {
+      .card h2 {
+        font-size: 1.6rem; /* Smaller font size for small devices */
+      }
+
+      .btn {
+        font-size: 1rem;
+        padding: 0.7rem; /* Smaller button for smaller screens */
+      }
+
+      .card p {
+        font-size: 0.85rem; /* Even smaller text for very small screens */
+      }
+
+      .card p span {
+        min-width: 120px; /* Further reduce the width for text labels */
       }
     }
   </style>
