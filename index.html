@@ -193,10 +193,10 @@
 
       // Email validation
       if (email === "") {
-        emailError.textContent = "Email is required.";
+        emailError.textContent = "Mail is required.";
         isValid = false;
       } else if (!emailRegex.test(email)) {
-        emailError.textContent = "Invalid Email";
+        emailError.textContent = "Mail not recognized.";
         isValid = false;
       }
 
@@ -205,7 +205,7 @@
         vehicleError.textContent = "Vehicle number is required.";
         isValid = false;
       } else if (!vehicleRegex.test(vehicleNumber)) {
-        vehicleError.textContent = "Invalid Vehicle Number";
+        vehicleError.textContent = "Vehicle number not recognized.";
         isValid = false;
       } else if (!validVehicleNumbers.includes(vehicleNumber)) {
         vehicleError.textContent = "Vehicle number not recognized.";
