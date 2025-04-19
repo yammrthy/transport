@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vehicle Information Card</title>
+  <title>CR-11 Vehicle Card</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -40,10 +40,12 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-sizing: border-box;
-     
+      transition: transform 0.3s ease;
     }
 
-    
+    .card:hover {
+      transform: scale(1.02);
+    }
 
     .card h2 {
       text-align: center;
@@ -142,7 +144,7 @@
 <body>
   <div class="card">
     <h2>Vehicle Information</h2>
-    <p><span>Vehicle ID No.:</span> CR-11</p>
+    p><span>Vehicle ID No.:</span> CR-11</p>
     <p><span>Type of Equipment:</span> MOBILE CRANES</p>
     <p><span>Category:</span> MAINTENANCE & SERVICE</p>
     <p><span>Year of Purchase:</span> 2020</p>
