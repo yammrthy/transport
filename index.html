@@ -7,73 +7,75 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #2d3e50;
-      --hover-color: #1f2b3a;
-      --font-dark: #2d3e50;
-      --font-light: #ffffff;
-      --glass-bg: rgba(255, 255, 255, 0.25);
-      --border-color: #ddd;
-      --error-color: #d9534f;
-      --success-color: #28a745;
-      --focus-color: #5bc0de;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  --primary-color: #d35400; /* Rust orange */
+  --secondary-color: #b0b0b0; /* Muted gray */
+  --hover-color: #a04000; /* Dark rust */
+  --bg-color: rgba(42, 46, 53, 0.3); /* Glass over steel gray */
+  --font-color: #f0f0f0; /* Light text */
+  --error-color: #e74c3c; /* Red for errors */
+  --success-color: #f39c12; /* Industrial yellow for success */
+  --border-color: #666; /* Mid gray border */
+  --focus-color: #f39c12; /* Highlight input with yellow */
+}
+body {
+  background-color: #1b1b1b;
+  background-image: none; /* optional: remove logo image if needed */
+}
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #1e2d3b, #1f2b3a);
-      background-image: url('logo.png');
+      background-image: url('logo.png'); /* Logo image as background */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 1rem;
-      color: var(--font-dark);
+      color: var(--font-color);
+      background-color: #1e2d3b; /* Slightly darker background for contrast */
     }
 
     .form-container {
-      background: var(--glass-bg);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 20px;
+      background-color: rgba(0, 0, 0, 0.3); /* Dark glass effect */
       padding: 2rem;
-      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       width: 100%;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      max-width: 420px;
+      backdrop-filter: blur(12px); /* Stronger glass effect */
+      -webkit-backdrop-filter: blur(12px);
+      box-sizing: border-box;
     }
 
     .form-container h2 {
       text-align: center;
-      font-size: 1.8rem;
+      color: var(--font-color);
+      font-weight: 500;
+      font-size: 2rem;
       margin-bottom: 1.5rem;
-      color: var(--font-dark);
     }
 
     label {
-      font-weight: 500;
-      margin-top: 1rem;
       display: block;
-      color: #333;
+      margin: 1rem 0 0.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--secondary-color);
     }
 
     input[type="email"],
     input[type="text"] {
       width: 100%;
-      padding: 0.9rem;
-      border-radius: 10px;
+      padding: 1rem;
       border: 1px solid var(--border-color);
-      margin-top: 0.5rem;
+      border-radius: 10px;
+      box-sizing: border-box;
       font-size: 1rem;
-      transition: border 0.3s ease;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
     }
 
     input[type="email"]:focus,
@@ -83,33 +85,28 @@
     }
 
     input[type="submit"] {
+      margin-top: 1.5rem;
       width: 100%;
-      padding: 0.9rem;
+      padding: 1rem;
       background-color: var(--primary-color);
       color: white;
       border: none;
       border-radius: 10px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-top: 1.5rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      font-weight: 600;
     }
 
     input[type="submit"]:hover {
       background-color: var(--hover-color);
     }
 
-    input[type="submit"]:disabled {
-      background-color: gray;
-      cursor: not-allowed;
-    }
-
     .error-message,
     .success-message {
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-size: 1rem;
       margin-top: 0.5rem;
+      font-weight: 600;
     }
 
     .error-message {
@@ -121,17 +118,19 @@
       text-align: center;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
       .form-container {
         padding: 1.5rem 1rem;
+        border-radius: 12px;
       }
 
-      .form-container h2 {
-        font-size: 1.6rem;
+      h2 {
+        font-size: 1.8rem;
       }
 
       input[type="submit"] {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        padding: 0.8rem;
       }
     }
   </style>
@@ -141,7 +140,7 @@
     <h2>Enter Vehicle Details</h2>
     <form id="vehicleForm" novalidate>
       <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="email" aria-describedby="emailError"/>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError"/>
       <span id="emailError" class="error-message" role="alert"></span>
 
       <label for="vehicleNumber">Vehicle Number</label>
@@ -150,51 +149,46 @@
 
       <input type="submit" value="Submit" />
     </form>
-    <div id="formFeedback" class="success-message" role="alert" aria-live="polite"></div>
+    <div id="formFeedback" class="success-message" role="alert"></div>
   </div>
 
   <script>
     const validVehicleNumbers = ["CR-11", "CR-12", "CR-3 90 T"];
     const emailRegex = /^[a-zA-Z0-9._%+-]+@jsw\.in$/;
+    const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]$/;
 
     document.getElementById("vehicleForm").addEventListener("submit", function (event) {
       event.preventDefault();
 
       const email = document.getElementById("email").value.trim();
-      const vehicleInput = document.getElementById("vehicleNumber").value.trim();
-      const vehicleNumber = vehicleInput.toUpperCase(); // Case-insensitive match
+      const vehicleNumber = document.getElementById("vehicleNumber").value.trim();
       const emailError = document.getElementById("emailError");
       const vehicleError = document.getElementById("vehicleError");
       const formFeedback = document.getElementById("formFeedback");
-      const submitButton = event.target.querySelector('input[type="submit"]');
 
       emailError.textContent = "";
       vehicleError.textContent = "";
       formFeedback.textContent = "";
-      submitButton.disabled = false;
 
       let isValid = true;
 
-      // Email check
+      // Email validation
       if (!emailRegex.test(email)) {
-        emailError.textContent = "Invalid user";
+        emailError.textContent = "Please enter a valid email ending with @jsw.in.";
         isValid = false;
       }
 
-      // Vehicle number format & validity
-      const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]{1}$/i;
+      // Vehicle number validation
       if (!vehicleRegex.test(vehicleNumber)) {
-        vehicleError.textContent = "Invalid vehicle number";
+        vehicleError.textContent = "Invalid format. Use CR-11 or CR-3 90 T.";
         isValid = false;
       } else if (!validVehicleNumbers.includes(vehicleNumber)) {
         vehicleError.textContent = "Vehicle number not recognized.";
         isValid = false;
       }
 
-      // Redirect if valid
       if (isValid) {
         formFeedback.textContent = "Redirecting to vehicle details...";
-        submitButton.disabled = true;
         setTimeout(() => {
           window.location.href = `https://yammrthy.github.io/transport/${encodeURIComponent(vehicleNumber)}.html`;
         }, 1500);
