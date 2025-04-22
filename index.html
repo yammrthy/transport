@@ -4,20 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vehicle Info - Industrial Project</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
   <style>
+   
     :root {
-      --primary-color: #d35400;
-      --secondary-color: #b0b0b0;
-      --hover-color: #a04000;
-      --bg-color: rgba(42, 46, 53, 0.3);
-      --font-color: #f0f0f0;
+      --primary-color: #2c6b2f; /* Dark Green (Excel-like) */
+      --secondary-color: #34495e; /* Darker Steel */
+      --hover-color: #1f5630;    /* Darker Green */
+      --bg-color: #f4f4f4;       /* Light Gray Background */
+      --font-color: #2f3b40;     /* Dark Text */
       --error-color: #e74c3c;
-      --success-color: #f39c12;
-      --border-color: #666;
-      --focus-color: #f39c12;
+      --success-color: #2c6b2f;
+      --border-color: #bdc3c7;    /* Light Border */
+      --focus-color: #2c6b2f;     /* Focus color */
+      --card-bg-color: #fff;
+      --card-shadow: rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for better depth */
     }
-
     * {
       box-sizing: border-box;
     }
@@ -30,30 +32,26 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-image: url('logo.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: #1e2d3b;
+      background-color: var(--bg-color);
       color: var(--font-color);
     }
 
     .form-container {
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: white;
       padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 420px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
     }
 
     .form-container h2 {
       text-align: center;
       font-size: 2rem;
-      font-weight: 500;
+      font-weight: 600;
       margin-bottom: 1.5rem;
+      color: var(--primary-color);
     }
 
     label {
@@ -64,23 +62,23 @@
       font-weight: 600;
     }
 
-    input[type="email"],
+    input[type="mail"],
     input[type="text"] {
       width: 100%;
       padding: 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
+      border: 2px solid var(--border-color);
+      border-radius: 4px;
       font-size: 1rem;
-      background-color: #ffffff; /* White background for the input */
-      color: #333; /* Text color inside input */
+      background-color: #f2f2f2;
+      color: var(--font-color);
     }
 
-    input[type="email"]::placeholder,
+    input[type="mail"]::placeholder,
     input[type="text"]::placeholder {
-      color: #888; /* Grey color for the placeholder */
+      color: #7f8c8d; /* Lighter gray placeholder text */
     }
 
-    input[type="email"]:focus,
+    input[type="mail"]:focus,
     input[type="text"]:focus {
       border-color: var(--focus-color);
       outline: none;
@@ -93,7 +91,7 @@
       background-color: var(--primary-color);
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 5px;
       font-size: 1.2rem;
       font-weight: 600;
       cursor: pointer;
@@ -136,7 +134,7 @@
         font-size: 1rem;
       }
 
-      input[type="email"],
+      input[type="mail"],
       input[type="text"] {
         padding: 0.9rem;
         font-size: 0.95rem;
@@ -156,11 +154,11 @@
 </head>
 <body>
   <div class="form-container" role="form">
-    <h2>Enter Vehicle Details</h2>
+    <h2>Vehicle Details</h2>
     <form id="vehicleForm" novalidate>
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError" autocomplete="off"/>
-      <span id="emailError" class="error-message" role="alert"></span>
+      <label for="mail">Mail Address</label>
+      <input type="mail" id="mail" name="mail" placeholder="Enter your mail id" required aria-describedby="mailError" autocomplete="off"/>
+      <span id="mailError" class="error-message" role="alert"></span>
 
       <label for="vehicleNumber">Vehicle Number</label>
       <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="Enter your vehicle number" required aria-describedby="vehicleError" autocomplete="off"/>
@@ -173,30 +171,30 @@
 
   <script>
     const validVehicleNumbers = ["CR-11", "CR-12", "CR-3 90 T"];
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@jsw\.in$/;
+    const mailRegex = /^[a-zA-Z0-9._%+-]+@jsw\.in$/;
     const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]$/;
 
     document.getElementById("vehicleForm").addEventListener("submit", function (event) {
       event.preventDefault();
 
-      const email = document.getElementById("email").value.trim();
+      const mail = document.getElementById("mail").value.trim();
       const vehicleNumber = document.getElementById("vehicleNumber").value.trim();
-      const emailError = document.getElementById("emailError");
+      const mailError = document.getElementById("mailError");
       const vehicleError = document.getElementById("vehicleError");
       const formFeedback = document.getElementById("formFeedback");
 
-      emailError.textContent = "";
+      mailError.textContent = "";
       vehicleError.textContent = "";
       formFeedback.textContent = "";
 
       let isValid = true;
 
-      // Email validation
-      if (email === "") {
-        emailError.textContent = "Mail is required.";
+      // mail validation
+      if (mail === "") {
+        mailError.textContent = "Mail is required.";
         isValid = false;
-      } else if (!emailRegex.test(email)) {
-        emailError.textContent = "Mail not recognized.";
+      } else if (!mailRegex.test(mail)) {
+        mailError.textContent = "Mail not recognized.";
         isValid = false;
       }
 
