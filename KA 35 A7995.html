@@ -97,6 +97,37 @@
       text-decoration: none;
     }
 
+    /* Maintenance Info Box Styling */
+    .maintenance-info {
+      background-color: #ecf0f1; /* Light Gray Background */
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .maintenance-info p {
+      font-size: 1rem;
+      margin: 0.8rem 0;
+      color: var(--secondary-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      line-height: 1.6;
+    }
+
+    .maintenance-info p span {
+      font-weight: 500;
+      min-width: 180px;
+      color: var(--primary-color);
+    }
+
+    .maintenance-info p .info {
+      font-weight: 400;
+      color: var(--font-color);
+    }
+
     /* Improved Mobile Responsiveness */
     @media (max-width: 600px) {
       body {
@@ -149,18 +180,22 @@
 <body>
   <div class="card">
     <h2>Vehicle Information</h2>
-    <p><span>Registration No.:</span> <span class="info">KA 35 A7995</span></p>
-    <p><span>Vehicle ID No.:</span> <span class="info">T-11</span></p>
-    <p><span>Type of Equipment:</span> <span class="info">TRAILER</span></p>
-    <p><span>Category:</span> <span class="info">MAINTENANCE & SERVICE</span></p>
-    <p><span>Year of Purchase:</span> <span class="info">2020</span></p>
-    <p><span>Age:</span> <span class="info">14 years</span></p>
-    <p><span>Make:</span> <span class="info">AMW</span></p>
-    <p><span>Model:</span> <span class="info">4923TR</span></p>
-    <p><span>Emission Norm:</span> <span class="info">BS2</span></p>
-    <p><span>Engine No.:</span> <span class="info">01C62857324</span></p>
-    <p><span>Chassis No.:</span> <span class="info">MBYB37000AFA10450</span></p>
-    <a href="https://jsw-my.sharepoint.com/:x:/g/personal/yamuna_m_jsw_in/EbHXB6aejL1HgrXAuZMuzN4BeVDtYYrVabqFAktB-tQaKg?e=PBfCG7" target="_blank">
+    <p><span>Registration No</span> <span class="info">KA 35 A7995</span></p>
+    <p><span>Vehicle ID No</span> <span class="info">T-11</span></p>
+    <p><span>Type of Equipment</span> <span class="info">TRAILER</span></p>
+    <p><span>Category</span> <span class="info">MAINTENANCE & SERVICE</span></p>
+    <p><span>Year of Purchase</span> <span class="info">2020</span></p>
+    <p><span>Age</span> <span class="info">14 years</span></p>
+    <p><span>Make</span> <span class="info">AMW</span></p>
+    <p><span>Model</span> <span class="info">4923TR</span></p>
+    <p><span>Emission Norm</span> <span class="info">BS2</span></p>
+
+    <div class="maintenance-info">
+      <p><span>Last Maintenance:</span> <span class="info">15 April 2025</span></p>
+      <p><span>Next Maintenance:</span> <span class="info">02 May 2025</span></p>
+    </div>
+
+    <a href="https://jsw-my.sharepoint.com/:x:/g/personal/yamuna_m_jsw_in/EURElt2zSRNFiNR8LDyHs0EBD1bMyWUQ3xGovSZLHA-Ihw?e=OA5mRW" target="_blank">
       <button class="btn">Open Excel File</button>
     </a>
   </div>
