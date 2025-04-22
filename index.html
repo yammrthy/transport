@@ -170,9 +170,10 @@
   </div>
 
   <script>
-    const validVehicleNumbers = ["CR-11", "CR-12", "CR-3 90 T"];
+    // Updated valid vehicle numbers
+    const validVehicleNumbers = ["KA 35 A7885", "KA 35 A7995"];
     const mailRegex = /^[a-zA-Z0-9._%+-]+@jsw\.in$/;
-    const vehicleRegex = /^CR-\d{1,2}$|^CR-\d{1,2}\s\d{2}\s[A-Z]$/;
+    const vehicleRegex = /^KA \d{2} [A-Z]\d{4}$/;
 
     document.getElementById("vehicleForm").addEventListener("submit", function (event) {
       event.preventDefault();
